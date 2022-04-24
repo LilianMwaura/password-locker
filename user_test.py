@@ -42,7 +42,7 @@ class TestUser(unittest.TestCase):
         test_delete_user test case to test if the user object is deleted from
          the contact list
         '''
-        self.new_user.delete_user() # deleting the new user
+        self.new_user.remove_user() # deleting the new user
         self.assertEqual(len(User.user_list),1)
     
 
