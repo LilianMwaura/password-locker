@@ -26,7 +26,7 @@ def display_users():
     '''
     return User.display_users()
 def main():
-    print("Hello Welcome to your contact list. What is your name?")
+    print("Hello Welcome to your users list. What is your name?")
             user_name = input()
 
             print(f"Hello {user_name}. what would you like to do?")

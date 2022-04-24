@@ -30,3 +30,12 @@ class User:
         method that returns the contact list 
         '''
         return cls.user_list
+
+    @classmethod
+    def verify_login(cls, username, password):
+         """
+         A method that verifies a user login
+         """
+         for user in cls.user_list:
+             if user.username == username and user.password == password:
+                 return user    
