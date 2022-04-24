@@ -1,6 +1,7 @@
 #!/usr/bin/env python3.9
 
 from user import User
+from credentials import Credentials
 def create_user(user_name,password):
     '''
     Function to create a new user

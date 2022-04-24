@@ -43,7 +43,7 @@ class TestUser(unittest.TestCase):
             test_delete_user to test if we can remove a user from our user list
             '''
             self.new_user.save_user()
-            test_user = User("Waambui","1234") # new user
+            test_user = User("Wambui","1234") # new user
             test_user.save_user()
 
             self.new_user.delete_user()# Deleting a user object
