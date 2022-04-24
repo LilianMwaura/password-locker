@@ -1,5 +1,6 @@
 import unittest # Importing the unittest module
 from user import User # Importing the user class
+from credentials import Credentials
 
 class TestUser(unittest.TestCase):
 
@@ -56,23 +57,49 @@ class TestUser(unittest.TestCase):
         self.assertEqual(User.display_users(),User.user_list)
 
 class TestCredentials(unittest.TestCase):
-     '''
+    '''
     Test class that defines test cases for the credentials class behaviours.
 
     Args:
         unittest.TestCase: TestCase class that helps in creating test cases
     '''
-     def tearDown(self):
-            '''
-            tearDown method that does clean up after each test case has run.
-            '''
-            Credentials.credentials_list = []
+    def tearDown(self):
+        '''
+        tearDown method that does clean up after each test case has run.
+        '''
+        Credentials.credentials_list = []
      
-     def setUp(self):
-            '''
+    def setUp(self):
+        '''
         Set up method to run before each test cases.
         '''
-            self.new_cred = Credentials("Instagram","2020")
+        self.new_cred = Credentials("Instagram","2020")
+    
+    def test_init(self):
+        '''
+        test_init test case to test if the object is initialized properly
+        '''
 
+        self.assertEqual(self.new_cred.account_name,"Instagram")
+        self.assertEqual(self.new_cred.account_password,"2020") 
+    
+    def test_save_credentials(self):
+        '''
+        test_save_credentials test case to test if the creential object is saved into
+        the credential list
+        '''
+        self.new_cred.save_credentials() 
+        self.assertEqual(len(Credentials.credentials_list),1)               
+    
+    def test_delete_credentials(self):
+        '''
+        test_delete_credentials to test if we can remove a cred from our cred list
+        '''
+        self.new_cred.save_credentials()
+        test_cred = Credentials("Instagram","2020")
+        test_cred.save_credentials()
+
+        self.new_cred.delete_credentials()
+        self.assertEqual(len(Credentials.credentials_list),1)
 if __name__ == '__main__':
     unittest.main()
