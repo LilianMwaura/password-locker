@@ -25,15 +25,47 @@ def display_users():
     Function that returns all the saved users
     '''
     return User.display_users()
-    
+
 def login_user(username, password):
     """
     A function that verifies a user login
     """
     check_user = User.verify_login(username, password)
     return check_user
+
+def create_credentials(account_name, account_password):
+    """
+    A function that creates a new credential
+    """
+    new_cred = Credentials(account_name, account_password)
+    return new_cred   
+
+def save_credentials(cred): 
+    """
+    A function that saves a credential
+    """
+    cred.save_credentials()
+    
+def delete_credentials(cred):
+    """
+    A function that deletes a credential
+    """
+    cred.delete_credentials()
+    
+def get_credentials(account_name):
+    """
+    A function that finds and returns a credential
+    """
+    return Credentials.get_credentials(account_name)
+
+def display_credentials():
+    """
+    A function that displays available credentials
+    """
+    return Credentials.display_credentials()   
+
 def main():
-    print("Hello Welcome to your users list. What is your name?")
+    print("Hello Welcome to Password Locker. What is your name?")
             user_name = input()
 
             print(f"Hello {user_name}. what would you like to do?")
