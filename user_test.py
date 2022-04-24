@@ -55,7 +55,24 @@ class TestUser(unittest.TestCase):
         
         self.assertEqual(User.display_users(),User.user_list)
 
-    
+class TestCredentials(unittest.TestCase):
+     '''
+    Test class that defines test cases for the credentials class behaviours.
+
+    Args:
+        unittest.TestCase: TestCase class that helps in creating test cases
+    '''
+     def tearDown(self):
+            '''
+            tearDown method that does clean up after each test case has run.
+            '''
+            Credentials.credentials_list = []
+     
+     def setUp(self):
+            '''
+        Set up method to run before each test cases.
+        '''
+            self.new_cred = Credentials("Instagram","2020")
 
 if __name__ == '__main__':
     unittest.main()

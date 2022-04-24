@@ -24,10 +24,18 @@ class Credentials:
         Credentials.credentials_list.remove(self)
     
     @classmethod
-    def display_users (cls):
+    def display_credentials(cls):
 
         '''
-        method that returns the contact list 
+        method that returns the credentials list 
         '''
-        return cls.user_list
-
+        return cls.credentials_list
+    
+    @classmethod
+    def get_credentials(cls, account_name):
+        """
+        A method that finds and returns credentials
+        """
+        for credential in cls.credentials_list:
+            credential.account_name == account_name
+            return credential
