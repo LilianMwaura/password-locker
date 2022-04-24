@@ -12,13 +12,13 @@ def save_users(user):
     '''
     Function to save user
     '''
-    contact.save_user()
+    user.save_user()
 
 def del_user(user):
     '''
     Function to delete a user
     '''
-    contact.delete_contact()
+    user.delete_contact()
 
 def display_users():
     '''
@@ -65,71 +65,127 @@ def display_credentials():
     return Credentials.display_credentials()   
 
 def main():
-    print("Hello Welcome to Password Locker. What is your name?")
-            user_name = input()
-
-            print(f"Hello {user_name}. what would you like to do?")
-            print('\n')
-
-            while True:
-                    print("Use these short codes : cc - create a new contact, dc - display contacts, fc -find a contact, ex -exit the contact list ")
-
-                    short_code = input().lower()
-
-                    if short_code == 'cc':
-                            print("New Contact")
-                            print("-"*10)
-
-                            print ("First name ....")
-                            f_name = input()
-
-                            print("Last name ...")
-                            l_name = input()
-
-                            print("Phone number ...")
-                            p_number = input()
-
-                            print("Email address ...")
-                            e_address = input()
-
-
-                            save_contacts(create_contact(f_name,l_name,p_number,e_address)) # create and save new contact.
-                            print ('\n')
-                            print(f"New Contact {f_name} {l_name} created")
-                            print ('\n')
-
-                    elif short_code == 'dc':
-
-                            if display_contacts():
-                                    print("Here is a list of all your contacts")
-                                    print('\n')
-
-                                    for contact in display_contacts():
-                                            print(f"{contact.first_name} {contact.last_name} .....{contact.phone_number}")
-
-                                    print('\n')
-                            else:
-                                    print('\n')
-                                    print("You dont seem to have any contacts saved yet")
-                                    print('\n')
-
-                    elif short_code == 'fc':
-
-                            print("Enter the number you want to search for")
-
-                            search_number = input()
-                            if check_existing_contacts(search_number):
-                                    search_contact = find_contact(search_number)
-                                    print(f"{search_contact.first_name} {search_contact.last_name}")
-                                    print('-' * 20)
-
-                                    print(f"Phone number.......{search_contact.phone_number}")
-                                    print(f"Email address.......{search_contact.email}")
-                            else:
-                                    print("That contact does not exist")
-
-                    elif short_code == "ex":
-                            print("Bye .......")
-                            break
-                    else:
-                            print("I really didn't get that. Please use the short codes")
+    print("\n")
+    print("Hi :) Welcome to Password Locker.")
+    print("\n")
+    print("Use the following short codes to navigate through the application.")
+    print("na - To create a new account.")
+    print("lg - To log in to your account.")
+    short_code = input("Write your short code here: ")
+    print("\n") 
+             
+    while True:
+        if short_code == "na":
+            print("To create a new account, you will need a username and a password.")  
+            print("Write your username below:")
+            username = input()
+            print("Write your password below: ")
+            password = input()
+            save_users(create_user(username, password))
+            print("Can you please confirm your password below:") 
+            confirmed_password = input()
+            
+            while confirmed_password != password:
+                print("Please input the correct password to continue")
+                password = input()
+                print("Confirm your password")
+                confirmed_password = input()
+                
+            else:
+                print(f"Congratulations {username}! You have successfully created a Password Locker account.")
+                print("\n")
+                print("Enter your login details to continue...")
+                print("Enter usernme")
+                login_username = input()
+                print("Enter password")
+                login_password = input()
+                
+            while username != login_username or confirmed_password != login_password:
+                print("Invalid username or password. Please try again.")
+                print("Enter username")
+                login_username = input()
+                print("Enter password")
+                login_password = input()
+                
+            else:
+                print(f"Welcome {username} to your Password Locker account. Your password is {password}.")
+                print("\n")
+                print("You can be able to interact with your passwords here.")       
+        
+        elif short_code == "lg":
+            print("Welcome back to Password Locker!")
+            print("Enter your details for you to login in your account")
+            print("Enter your username")
+            username = input()
+            print("Enter your password")
+            password = input() 
+            login = login_user(username, password)
+            
+            if login_user == login:
+                print("\n")
+                print(f"Welcome {username} to your Password Locker account. Your password is {password}.")
+                print("You can be able to interact with your passwords here.")       
+            else:
+                print("Invalid username or password. Please try again or first create an account.")
+                print("Enter username")
+                username = input()
+                print("Enter password")
+                password = input()              
+        
+        while True:
+            print("Input the following short codes to perform various actions in your Password Locker account:")
+            print("ad - To add a new password")
+            print("vw - To view our passwords")
+            print("del - To delete your passwords")
+            print("cc - To make Password Locker generate you a password for any of your accounts")
+            print("ex - To exit")
+            short_code = input("Enter your short code here: ")
+            
+            if short_code == "ad":
+                print("Enter your the account whose password you want to store, e.g Snapchat" )
+                print("Account Name: ")
+                account_name = input()
+                print("Enter the password for the account you have just entered ")
+                account_password = input()
+                print("\n")
+                print("You have successfully added a password to your account!")
+                print(f"Account: {account_name}  Password: {account_password}")
+                print("\n")
+                save_credentials(create_credentials(account_name, account_password))
+                
+            elif short_code == "vw":
+                if display_credentials():
+                  print("\n")
+                  print("The following are your available passwords in your account: ")
+                  for cred in display_credentials():
+                      
+                      print(f"Account name: {cred.account_name}  Account Password: {cred.account_password}")
+                      print("\n")
+                else: print("You do not seem to have any save passwords")
+                
+            elif short_code == "cc":
+                print("Thank you for choosing us to help you generate your password.")
+                print("To begin, enter the account you wish to have a password, e.g Twitter, and we will generate a new password for you")
+                account_name = input()
+                account_password = random.randint(1000, 9999)
+                print("\n")
+                print(f"Your generated password is {account_password}")
+                save_credentials(create_credentials(account_name, account_password)) 
+                print("\n")       
+            
+            elif short_code == "del":
+                print("Enter the account name you want to delete below, e.g Twitter")
+                search_account = input()
+                search_account = get_credentials(account_name)
+                delete_credentials(get_credentials(account_name))
+                print("\n")
+                print(f"Your account for {search_account.account_name} has been deleted successfully!")
+                
+           
+            elif short_code == "ex":    
+                print("Thank you for using Password Locker!")
+                print("BYE")
+            break        
+                    
+if __name__ == "__main__":
+    main()         
