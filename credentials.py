@@ -16,12 +16,12 @@ class Credentials:
         '''
         Credentials.credentials_list.append(self)
     
-    def delete_user (self):
+    def delete_credentials (self):
 
         '''
-        delete_user method deletes a new user objects from the user_list
+        delete_credentials method deletes a new credentials objects from the credentials_list
         '''
-        User.user_list.remove(self)
+        Credentials.credentials_list.remove(self)
     
     @classmethod
     def display_users (cls):
