@@ -19,3 +19,9 @@ def del_user(user):
     Function to delete a user
     '''
     contact.delete_contact()
+
+def del_contact(contact):
+    '''
+    Function to delete a contact
+    '''
+    contact.delete_contact()
