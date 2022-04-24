@@ -24,9 +24,9 @@ class User:
         User.user_list.remove(self)
     
     @classmethod
-    def display_name (self):
+    def display_users (cls):
 
         '''
-        display_name method displays name of a new user
+        method that returns the contact list 
         '''
         return cls.user_list
