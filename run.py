@@ -25,6 +25,13 @@ def display_users():
     Function that returns all the saved users
     '''
     return User.display_users()
+    
+def login_user(username, password):
+    """
+    A function that verifies a user login
+    """
+    check_user = User.verify_login(username, password)
+    return check_user
 def main():
     print("Hello Welcome to your users list. What is your name?")
             user_name = input()
