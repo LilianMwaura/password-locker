@@ -23,3 +23,10 @@ class User:
         '''
         User.user_list.remove(self)
     
+    @classmethod
+    def display_name (self):
+
+        '''
+        display_name method displays name of a new user
+        '''
+        return cls.user_list
